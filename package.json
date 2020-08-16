@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "dotenv": "^8.2.0",
+    "knex": "^0.21.4",
+    "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
@@ -14,7 +17,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "migrate": "knex migrate:latest --knexfile models/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile models/knexfile.js ",
+    "seed": "knex seed:run --knexfile models/knexfile.js"
   },
   "eslintConfig": {
     "extends": "react-app"
