@@ -1,13 +1,16 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
+const serverStatic = require("serve-static");
 
 const configuration = require("../models/knexfile");
 const database = require("knex")(configuration);
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
+app.use(serverStatic(path.join(__dirname, "../build")));
 app.use(bodyparser.json());
 app.use(cors());
 

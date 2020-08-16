@@ -40,3 +40,9 @@ yarn seed
 ## Running the tests
 
 ## Deployment
+
+Build app
+
+```
+yarn build
+```
