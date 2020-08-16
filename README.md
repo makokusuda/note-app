@@ -6,7 +6,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequirements
 
-- Install PostgreSQL
+Install PostgreSQL
 
 ### Installing
 
@@ -16,7 +16,7 @@ Install all dependencies
 yarn install
 ```
 
-### Setup local database
+### Setup Local Database
 
 Create database
 

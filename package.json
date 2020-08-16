@@ -6,8 +6,12 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "knex": "^0.21.4",
+    "nodemon": "^2.0.4",
     "pg": "^8.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -20,7 +24,8 @@
     "eject": "react-scripts eject",
     "migrate": "knex migrate:latest --knexfile models/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile models/knexfile.js ",
-    "seed": "knex seed:run --knexfile models/knexfile.js"
+    "seed": "knex seed:run --knexfile models/knexfile.js",
+    "start:server": "nodemon controllers/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
