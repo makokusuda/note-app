@@ -37,6 +37,22 @@ Run seed
 yarn seed
 ```
 
+### Run app
+
+Run server
+
+```
+yarn start:server
+```
+
+Run client on another terminal
+
+```
+yarn start:client
+```
+
+Visit `http://localhost:3000/`
+
 ## Running the tests
 
 ## Deployment
