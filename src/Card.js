@@ -1,13 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-function Card() {
-  const notes = useSelector((state) => state.notes);
-  const dispatch = useDispatch();
-
+function Card(props) {
   return (
     <div>
-      <p>This is Card</p>
+      <p>id: {props.id}</p>
+      <p>title: {props.title}</p>
+      <p>body: {props.body}</p>
     </div>
   );
 }

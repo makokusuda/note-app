@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStore } from "react-redux";
+import Card from "./Card";
 
 function List() {
   const [list, setList] = useState([]);
@@ -16,8 +17,8 @@ function List() {
       <button type="button">Add note</button>
       <p>This is list</p>
       <div>
-        {list.map((item) => (
-          <p key={item.id}>{item.title}</p>
+        {list.map((e) => (
+          <Card id={e.id} title={e.title} body={e.body} />
         ))}
       </div>
     </div>

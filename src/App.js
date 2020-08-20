@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import List from "./List";
-import Card from "./Card";
 import Body from "./Body";
 import { useDispatch } from "react-redux";
 
@@ -21,7 +20,6 @@ function App() {
   return (
     <div>
       <List />
-      <Card />
       <Body />
     </div>
   );
