@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import "./App.css";
+import "../style/App.css";
 import List from "./List";
 import Body from "./Body";
 import { useDispatch } from "react-redux";
+import { Box, Grid } from "@material-ui/core";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,12 +16,21 @@ function App() {
       //dispatch(loadNotes(data));
     };
     fetchData();
-  }, []);
+  });
 
   return (
-    <div>
-      <List />
-      <Body />
+    <div id="app">
+      <div id="title">
+        <h3>Kiroku</h3>
+      </div>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <List />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Body />
+        </Grid>
+      </Grid>
     </div>
   );
 }
