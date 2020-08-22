@@ -3,12 +3,11 @@ import { useStore } from "react-redux";
 import classNames from "classnames";
 import "../style/App.css";
 import Card from "./Card";
-import { IconButton, TextField, Box, Grid } from "@material-ui/core";
+import { IconButton, TextField } from "@material-ui/core";
 import { Create } from "@material-ui/icons";
 
 function List() {
   const [list, setList] = useState([]);
-
   const store = useStore();
 
   store.subscribe(() => {
@@ -35,7 +34,13 @@ function List() {
       </div>
       <div>
         {list.map((e) => (
-          <Card key={e.id} title={e.title} body={e.body} />
+          <Card
+            key={e.id}
+            id={e.id}
+            title={e.title}
+            body={e.body}
+            updatedAt={e.update_at}
+          />
         ))}
       </div>
     </div>

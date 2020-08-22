@@ -61,13 +61,37 @@
 }
 
 /* Card.js */
+/* .card {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #ffcb8a;
+  border-radius: 3px;
+  transition: 0.4s;
+} */
+
+/* .card:hover {
+  background: #67c5ff;
+  color: white;
+} */
 .card {
+  width: 90%;
   padding: 0.5em 1em;
-  margin: 1em 1em;
+  margin: 0.2em 0.2em;
   color: #232323;
   background: #fff8e8;
   border-left: solid 10px #ffc06e;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+  outline: 0;
+  text-align: left;
+}
+
+.card:hover {
+  background: #e6e0d3;
 }
 
 .card p {
@@ -75,9 +99,22 @@
   padding: 0;
 }
 
+#note-title {
+  font-weight: bold;
+}
+
+#updated-at {
+  text-align: right;
+}
+
 /* List.js */
 
 /* Body.js */
+#note-body {
+  margin: 0 auto;
+  text-align: left;
+  width: 80%;
+}
 
 /* List.js/Body.js */
 
@@ -109,7 +146,3 @@
 #right-material {
   text-align: right;
 }
-
-/* #search-field {
-  height: 0.2em;
-} */

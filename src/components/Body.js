@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { useStore } from "react-redux";
 import classNames from "classnames";
 import "../style/App.css";
-import { IconButton, Box, Grid } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 
 function Body() {
+  const [notebody, setNotebody] = useState("default");
+  const store = useStore();
+
+  store.subscribe(() => {
+    setNotebody(store.getState().text);
+  });
+
   return (
     <div className="display-box">
       <div className={classNames("box-header", "body-area")}>
@@ -12,7 +20,9 @@ function Body() {
           <Delete />
         </IconButton>
       </div>
-      <p>This is body</p>
+      <div id="note-body">
+        <p>{notebody}</p>
+      </div>
     </div>
   );
 }

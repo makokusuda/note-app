@@ -4,7 +4,7 @@ import "../style/App.css";
 import List from "./List";
 import Body from "./Body";
 import { useDispatch } from "react-redux";
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 function App() {
   const dispatch = useDispatch();
