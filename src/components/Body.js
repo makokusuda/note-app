@@ -10,7 +10,7 @@ function Body() {
   const store = useStore();
 
   store.subscribe(() => {
-    setNotebody(store.getState().text);
+    setNotebody(store.getState().text || "default");
   });
 
   return (
@@ -21,7 +21,14 @@ function Body() {
         </IconButton>
       </div>
       <div id="note-body">
-        <p>{notebody}</p>
+        <textarea
+          type="text"
+          id="edit-area"
+          value={notebody}
+          onChange={(e) => {
+            setNotebody(e.target.value);
+          }}
+        />
       </div>
     </div>
   );

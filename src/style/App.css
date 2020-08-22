@@ -20,7 +20,6 @@
   line-height: 60px;
   text-align: center;
   padding: 7px 0;
-  font-size: 18px;
   background: #ffc06e;
   color: #fff;
   box-sizing: border-box;
@@ -105,6 +104,14 @@
 
 #updated-at {
   text-align: right;
+}
+
+#edit-area {
+  width: 100%;
+  height: 30em;
+  resize: none;
+  outline: none;
+  border: none;
 }
 
 /* List.js */

@@ -23,6 +23,35 @@ app.get("/notes", async (req, res) => {
   }
 });
 
+app.post("/notes", async (req, res) => {
+  const note = req.body;
+
+  for (let reqParam of ["title", "body"]) {
+    if (!note[reqParam]) {
+      note[reqParam] = "";
+    }
+  }
+
+  try {
+    const id = await database("notes").insert({
+      title: note.title,
+      body: note.body,
+    });
+    res.status(201).json({ id });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+// replace
+// app.put("/notes/:id", async (req,res) => {
+
+// })
+
+// app.delete("/notes/:od", async (req, res) => {
+
+// })
+
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);
 });
