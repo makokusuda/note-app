@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStore, useDispatch } from "react-redux";
+import { useStore } from "react-redux";
 import axios from "axios";
 import classNames from "classnames";
 import "../style/App.css";
@@ -7,29 +7,23 @@ import Card from "./Card";
 import { IconButton, TextField } from "@material-ui/core";
 import { Create } from "@material-ui/icons";
 
-function List() {
+function List({ fetchData }) {
   const [list, setList] = useState([]);
   const store = useStore();
-  const dispatch = useDispatch();
 
   store.subscribe(() => {
     setList(store.getState().notes);
   });
 
-  const fetchData = async () => {
-    const { data } = await axios.get("/notes");
-    dispatch({ type: "LOAD_NOTES", notes: data });
-    //dispatch(loadNotes(data));
-  };
-
   const addNewNote = () => {
     // add new note
     axios.post("/notes", {
       title: "new title",
-      body: " ",
+      body: "new body",
     });
     // reload database
     fetchData();
+    // display latest data
   };
 
   return (

@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import moment from "moment";
 import "../style/App.css";
 import List from "./List";
 import Body from "./Body";
@@ -8,14 +9,35 @@ import { Grid } from "@material-ui/core";
 
 function App() {
   const dispatch = useDispatch();
+  const [latestNote, setLatestNote] = useState();
+
+  const fetchData = async () => {
+    const { data } = await axios.get("/notes");
+
+    const convertDate = data.map((item) => {
+      item.update_at = moment(item.update_at, "YYYYMMDDhhmm")
+        .add(9, "hours")
+        .fromNow();
+      return item;
+    });
+
+    convertDate.sort((a, b) => {
+      return a < b ? 1 : -1;
+    });
+
+    setLatestNote(convertDate[0].body);
+
+    dispatch({ type: "LOAD_NOTES", notes: convertDate });
+    //dispatch(loadNotes(convertDate));
+  };
+
+  const getLatestText = (text) => {
+    dispatch({ type: "CHOOSE_NOTE", text });
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get("/notes");
-      dispatch({ type: "LOAD_NOTES", notes: data });
-      //dispatch(loadNotes(data));
-    };
-    fetchData();
+    // fetch data and display latest note
+    fetchData().then(() => getLatestText(latestNote));
   });
 
   return (
@@ -25,7 +47,7 @@ function App() {
       </div>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <List />
+          <List fetchData={fetchData} />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Body />
