@@ -9,7 +9,8 @@ import { Grid } from "@material-ui/core";
 
 function App() {
   const dispatch = useDispatch();
-  const [latestNote, setLatestNote] = useState();
+  const [latestNote, setLatestNote] = useState("");
+  const [latestId, setLatestID] = useState();
 
   const fetchData = async () => {
     const { data } = await axios.get("/notes");
@@ -26,18 +27,22 @@ function App() {
     });
 
     setLatestNote(convertDate[0].body);
+    setLatestID(convertDate[0].id);
 
     dispatch({ type: "LOAD_NOTES", notes: convertDate });
     //dispatch(loadNotes(convertDate));
   };
 
-  const getLatestText = (text) => {
-    dispatch({ type: "CHOOSE_NOTE", text });
+  const getLatestText = (text, id) => {
+    dispatch({ type: "CHOOSE_BODY", text });
+    dispatch({ type: "CHOOSE_ID", id });
   };
 
   useEffect(() => {
     // fetch data and display latest note
-    fetchData().then(() => getLatestText(latestNote));
+    fetchData().then(() => {
+      getLatestText(latestNote, latestId);
+    });
   });
 
   return (

@@ -6,11 +6,11 @@ import { IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 
 function Body() {
-  const [notebody, setNotebody] = useState("default");
+  const [notebody, setNotebody] = useState("no result");
   const store = useStore();
 
   store.subscribe(() => {
-    setNotebody(store.getState().text || "default");
+    setNotebody(store.getState().text || "no result");
   });
 
   return (

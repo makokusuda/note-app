@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 function Card(props) {
   const dispatch = useDispatch();
 
-  const getText = (text) => {
-    dispatch({ type: "CHOOSE_NOTE", text });
+  const getText = (text, id) => {
+    dispatch({ type: "CHOOSE_BODY", text });
+    dispatch({ type: "CHOOSE_ID", id });
   };
 
   return (
@@ -14,7 +15,7 @@ function Card(props) {
         type="button"
         className="card"
         onClick={() => {
-          getText(props.body);
+          getText(props.body, props.id);
         }}
       >
         <p id="note-title">{props.title}</p>
