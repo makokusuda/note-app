@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useStore } from "react-redux";
+import { useStore, useDispatch } from "react-redux";
+import axios from "axios";
 import classNames from "classnames";
 import "../style/App.css";
 import Card from "./Card";
@@ -9,10 +10,27 @@ import { Create } from "@material-ui/icons";
 function List() {
   const [list, setList] = useState([]);
   const store = useStore();
+  const dispatch = useDispatch();
 
   store.subscribe(() => {
     setList(store.getState().notes);
   });
+
+  const fetchData = async () => {
+    const { data } = await axios.get("/notes");
+    dispatch({ type: "LOAD_NOTES", notes: data });
+    //dispatch(loadNotes(data));
+  };
+
+  const addNewNote = () => {
+    // add new note
+    axios.post("/notes", {
+      title: "new title",
+      body: " ",
+    });
+    // reload database
+    fetchData();
+  };
 
   return (
     <div className="display-box">
@@ -27,7 +45,7 @@ function List() {
           />
         </div>
         <div id="right-material">
-          <IconButton aria-label="create">
+          <IconButton aria-label="create" onClick={addNewNote}>
             <Create />
           </IconButton>
         </div>
