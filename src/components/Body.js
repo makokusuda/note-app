@@ -27,6 +27,7 @@ function Body() {
           value={notebody}
           onChange={(e) => {
             setNotebody(e.target.value);
+            console.log(e.target.value);
           }}
         />
       </div>

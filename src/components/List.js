@@ -9,6 +9,7 @@ import { Create } from "@material-ui/icons";
 
 function List({ fetchData }) {
   const [list, setList] = useState([]);
+
   const store = useStore();
 
   store.subscribe(() => {

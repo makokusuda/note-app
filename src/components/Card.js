@@ -1,7 +1,14 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useStore } from "react-redux";
 
 function Card(props) {
+  const [chosenID, setChosenID] = useState();
+  const store = useStore();
+
+  store.subscribe(() => {
+    setChosenID(store.getState().id || "no result");
+  });
+
   const dispatch = useDispatch();
 
   const getText = (text, id) => {
@@ -19,13 +26,13 @@ function Card(props) {
     <div>
       <button
         type="button"
-        className="card"
+        className={chosenID === props.id ? "active-card" : "card"}
         onClick={() => {
           getText(props.body, props.id);
         }}
       >
         <p id="note-title">{noteTitle}</p>
-        <p id="updated-at">{props.updatedAt}</p>
+        <p id="updated-at">Last updated {props.updatedAt}</p>
       </button>
     </div>
   );
