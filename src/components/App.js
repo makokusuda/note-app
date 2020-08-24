@@ -16,7 +16,7 @@ function App() {
     const { data } = await axios.get("/notes");
 
     const convertDate = data.map((item) => {
-      item.update_at = moment(item.update_at, "YYYYMMDDhhmm")
+      item.updated_at = moment(item.updated_at, "YYYYMMDDhhmm")
         .add(9, "hours")
         .fromNow();
       return item;
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div id="app">
-      <div id="title">
+      <div id="app-title">
         <h3>Kiroku</h3>
       </div>
       <Grid container spacing={3}>

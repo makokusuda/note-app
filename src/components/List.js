@@ -18,7 +18,6 @@ function List({ fetchData }) {
   const addNewNote = () => {
     // add new note
     axios.post("/notes", {
-      title: "new title",
       body: "new body",
     });
     // reload database
@@ -46,13 +45,7 @@ function List({ fetchData }) {
       </div>
       <div>
         {list.map((e) => (
-          <Card
-            key={e.id}
-            id={e.id}
-            title={e.title}
-            body={e.body}
-            updatedAt={e.update_at}
-          />
+          <Card key={e.id} id={e.id} body={e.body} updatedAt={e.updated_at} />
         ))}
       </div>
     </div>

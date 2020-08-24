@@ -26,7 +26,7 @@ app.get("/notes", async (req, res) => {
 app.post("/notes", async (req, res) => {
   const note = req.body;
 
-  for (let reqParam of ["title", "body"]) {
+  for (let reqParam of ["body"]) {
     if (!note[reqParam]) {
       note[reqParam] = "";
     }
@@ -34,7 +34,6 @@ app.post("/notes", async (req, res) => {
 
   try {
     const id = await database("notes").insert({
-      title: note.title,
       body: note.body,
     });
     res.status(201).json({ id });

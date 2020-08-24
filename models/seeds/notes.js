@@ -3,9 +3,9 @@ exports.seed = function (knex) {
     .del()
     .then(function () {
       return knex("notes").insert([
-        { title: "Database", body: "PostgreSQL" },
-        { title: "Groceries", body: "Rice, Egg" },
-        { title: "Books to read", body: "Japanese history" },
+        { body: "PostgreSQL \nMongoDB \nMySQL" },
+        { body: "Rice \nEgg" },
+        { body: "Japanese history \nKanji \nCooking \nReact" },
       ]);
     });
 };
