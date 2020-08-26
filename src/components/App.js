@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import "../style/App.css";
@@ -9,8 +9,6 @@ import { Grid } from "@material-ui/core";
 
 function App() {
   const dispatch = useDispatch();
-  const [latestNote, setLatestNote] = useState("");
-  const [latestId, setLatestID] = useState();
 
   const fetchData = async () => {
     const { data } = await axios.get("/notes");
@@ -26,23 +24,15 @@ function App() {
       return a < b ? 1 : -1;
     });
 
-    setLatestNote(convertDate[0].body);
-    setLatestID(convertDate[0].id);
-
     dispatch({ type: "LOAD_NOTES", notes: convertDate });
+    dispatch({ type: "CHOOSE_BODY", text: convertDate[0].body });
+    dispatch({ type: "CHOOSE_ID", id: convertDate[0].id });
     //dispatch(loadNotes(convertDate));
-  };
-
-  const getLatestText = (text, id) => {
-    dispatch({ type: "CHOOSE_BODY", text });
-    dispatch({ type: "CHOOSE_ID", id });
   };
 
   useEffect(() => {
     // fetch data and display latest note
-    fetchData().then(() => {
-      getLatestText(latestNote, latestId);
-    });
+    fetchData();
   });
 
   return (
@@ -55,7 +45,7 @@ function App() {
           <List fetchData={fetchData} />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Body />
+          <Body fetchData={fetchData} />
         </Grid>
       </Grid>
     </div>

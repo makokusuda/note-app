@@ -16,8 +16,8 @@ function Card(props) {
     dispatch({ type: "CHOOSE_ID", id });
   };
 
+  // Title should be one line and less than 20 characters
   let noteTitle = props.body.split(" \n")[0];
-  // less than 25 characters
   if (noteTitle.length > 20) {
     noteTitle = noteTitle.slice(0, 20);
   }

@@ -23,7 +23,6 @@ function List({ fetchData }) {
     });
     // reload database
     fetchData();
-    // display latest data
   };
 
   return (
