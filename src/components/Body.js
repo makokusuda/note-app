@@ -30,13 +30,13 @@ function Body({ fetchData }) {
     <div className="display-box">
       <div className={classNames("box-header", "body-area")}>
         <Tooltip title="Delete" placement="top">
-          <IconButton aria-label="delete">
-            <Delete onClick={() => deleteNote(id)} />
+          <IconButton aria-label="delete" onClick={() => deleteNote(id)}>
+            <Delete />
           </IconButton>
         </Tooltip>
         <Tooltip title="Save" placement="top">
-          <IconButton>
-            <Save onClick={() => updateNote(id, notebody)} />
+          <IconButton onClick={() => updateNote(id, notebody)}>
+            <Save />
           </IconButton>
         </Tooltip>
       </div>
