@@ -42,7 +42,6 @@ app.post("/notes", async (req, res) => {
   }
 });
 
-// update
 app.patch("/notes/:id", async (req, res) => {
   const note = req.body;
   try {
@@ -55,6 +54,14 @@ app.patch("/notes/:id", async (req, res) => {
   }
 });
 
+app.delete("/notes/:id", async (req, res) => {
+  try {
+    const id = await database("notes").where("id", req.params.id).del();
+    res.status(200).json({ id });
+  } catch (error) {
+    res.status(404).json({ error });
+  }
+});
 // app.delete("/notes/:od", async (req, res) => {
 
 // })

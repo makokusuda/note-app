@@ -3,8 +3,8 @@ import { useStore } from "react-redux";
 import axios from "axios";
 import classNames from "classnames";
 import "../style/App.css";
-import { IconButton } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
+import { IconButton, Tooltip } from "@material-ui/core";
+import { Delete, Save } from "@material-ui/icons";
 
 function Body({ fetchData }) {
   const [notebody, setNotebody] = useState("no result");
@@ -21,13 +21,24 @@ function Body({ fetchData }) {
     await fetchData();
   };
 
+  const deleteNote = async (id) => {
+    await axios.delete(`notes/${id}`);
+    await fetchData();
+  };
+
   return (
     <div className="display-box">
       <div className={classNames("box-header", "body-area")}>
-        <IconButton aria-label="delete">
-          <Delete />
-        </IconButton>
-        <button onClick={() => updateNote(id, notebody)}>save</button>
+        <Tooltip title="Delete" placement="top">
+          <IconButton aria-label="delete">
+            <Delete onClick={() => deleteNote(id)} />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Save" placement="top">
+          <IconButton>
+            <Save onClick={() => updateNote(id, notebody)} />
+          </IconButton>
+        </Tooltip>
       </div>
       <div id="note-body">
         <textarea

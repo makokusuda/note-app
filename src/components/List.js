@@ -4,7 +4,7 @@ import axios from "axios";
 import classNames from "classnames";
 import "../style/App.css";
 import Card from "./Card";
-import { IconButton, TextField } from "@material-ui/core";
+import { IconButton, TextField, Tooltip } from "@material-ui/core";
 import { Create } from "@material-ui/icons";
 
 function List({ fetchData }) {
@@ -16,13 +16,13 @@ function List({ fetchData }) {
     setList(store.getState().notes);
   });
 
-  const addNewNote = () => {
+  const addNewNote = async () => {
     // add new note
-    axios.post("/notes", {
+    await axios.post("/notes", {
       body: "new body",
     });
     // reload database
-    fetchData();
+    await fetchData();
   };
 
   return (
@@ -38,9 +38,11 @@ function List({ fetchData }) {
           />
         </div>
         <div id="right-material">
-          <IconButton aria-label="create" onClick={addNewNote}>
-            <Create />
-          </IconButton>
+          <Tooltip title="Create" placement="top">
+            <IconButton aria-label="create" onClick={() => addNewNote()}>
+              <Create />
+            </IconButton>
+          </Tooltip>
         </div>
       </div>
       <div>
