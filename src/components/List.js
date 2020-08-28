@@ -8,7 +8,9 @@ import { IconButton, TextField, Tooltip } from "@material-ui/core";
 import { Create } from "@material-ui/icons";
 
 function List({ fetchData }) {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([]); // allnotes
+  const [searchedList, setSearchedList] = useState([]); //searced list
+  const [searchKey, setSearchKey] = useState("");
 
   const store = useStore();
 
@@ -25,6 +27,12 @@ function List({ fetchData }) {
     await fetchData();
   };
 
+  const searchNote = (word) => {
+    setSearchedList(
+      list.filter((e) => e.body.toLowerCase().includes(word.toLowerCase()))
+    );
+  };
+
   return (
     <div className="display-box">
       <div className={classNames("box-header", "list-area")}>
@@ -35,6 +43,10 @@ function List({ fetchData }) {
             variant="outlined"
             size="small"
             id="search-field"
+            onChange={(e) => {
+              setSearchKey(e.target.value);
+              searchNote(e.target.value);
+            }}
           />
         </div>
         <div id="right-material">
@@ -46,9 +58,23 @@ function List({ fetchData }) {
         </div>
       </div>
       <div>
-        {list.map((e) => (
-          <Card key={e.id} id={e.id} body={e.body} updatedAt={e.updated_at} />
-        ))}
+        {searchKey === ""
+          ? list.map((e) => (
+              <Card
+                key={e.id}
+                id={e.id}
+                body={e.body}
+                updatedAt={e.updated_at}
+              />
+            ))
+          : searchedList.map((e) => (
+              <Card
+                key={e.id}
+                id={e.id}
+                body={e.body}
+                updatedAt={e.updated_at}
+              />
+            ))}
       </div>
     </div>
   );
