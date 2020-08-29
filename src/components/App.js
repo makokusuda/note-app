@@ -13,15 +13,15 @@ function App() {
   const fetchData = async () => {
     const { data } = await axios.get("/notes");
 
-    const convertDate = data.map((item) => {
+    const sortedData = data.sort((a, b) => {
+      return a.updated_at < b.updated_at ? 1 : -1;
+    });
+
+    const convertDate = sortedData.map((item) => {
       item.updated_at = moment(item.updated_at, "YYYYMMDDhhmm")
         .add(9, "hours")
         .fromNow();
       return item;
-    });
-
-    convertDate.sort((a, b) => {
-      return a < b ? 1 : -1;
     });
 
     dispatch({ type: "LOAD_NOTES", notes: convertDate });
