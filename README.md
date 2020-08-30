@@ -1,6 +1,6 @@
 # Kiroku📝
 
-You can see how iw works: [https://cc-note-app.herokuapp.com/](https://cc-note-app.herokuapp.com/)
+You can see how it works: [https://cc-note-app.herokuapp.com/](https://cc-note-app.herokuapp.com/)
 
 ## Getting Started
 
