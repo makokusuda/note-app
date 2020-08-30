@@ -7,12 +7,14 @@ import { IconButton, Tooltip } from "@material-ui/core";
 import { Delete, Save } from "@material-ui/icons";
 
 function Body({ fetchData }) {
-  const [notebody, setNotebody] = useState("no result");
+  const [notebody, setNotebody] = useState("");
   const [id, setId] = useState();
+  const [timer, setTimer] = useState(0);
+  const [status, setStatus] = useState("");
   const store = useStore();
 
   store.subscribe(() => {
-    setNotebody(store.getState().text || "no result");
+    setNotebody(store.getState().text || "");
     setId(store.getState().id);
   });
 
@@ -26,6 +28,19 @@ function Body({ fetchData }) {
     await fetchData();
   };
 
+  const saveBody = (text) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setTimer(
+      setTimeout(async () => {
+        await axios.patch(`/notes/${id}`, { body: text });
+        await fetchData();
+        await setStatus("Saved");
+      }, 1000)
+    );
+  };
+
   return (
     <div className="display-box">
       <div className={classNames("box-header", "body-area")}>
@@ -34,11 +49,8 @@ function Body({ fetchData }) {
             <Delete />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Save" placement="top">
-          <IconButton onClick={() => updateNote(id, notebody)}>
-            <Save />
-          </IconButton>
-        </Tooltip>
+
+        <p id="isSaved">{status}</p>
       </div>
       <div id="note-body">
         <textarea
@@ -47,6 +59,8 @@ function Body({ fetchData }) {
           value={notebody}
           onChange={(e) => {
             setNotebody(e.target.value);
+            saveBody(e.target.value);
+            setStatus("Saving...");
           }}
         />
       </div>

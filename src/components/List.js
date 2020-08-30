@@ -21,7 +21,7 @@ function List({ fetchData }) {
   const addNewNote = async () => {
     // add new note
     await axios.post("/notes", {
-      body: "new body",
+      body: "",
     });
     // reload database
     await fetchData();

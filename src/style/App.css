@@ -144,6 +144,11 @@
   width: 80%;
 }
 
+#isSaved {
+  text-align: right;
+  float: right;
+}
+
 /* List.js/Body.js */
 
 .display-box {

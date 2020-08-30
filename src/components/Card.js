@@ -6,7 +6,7 @@ function Card(props) {
   const store = useStore();
 
   store.subscribe(() => {
-    setChosenID(store.getState().id || "no result");
+    setChosenID(store.getState().id || "");
   });
 
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function Card(props) {
   };
 
   // Title should be one line and less than 20 characters
-  let noteTitle = props.body.split(" \n")[0];
+  let noteTitle = props.body.split("\n")[0];
   if (noteTitle.length > 20) {
     noteTitle = noteTitle.slice(0, 20);
   }
