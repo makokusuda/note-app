@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import "../style/App.css";
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
 
 function App() {
+  const [searchKey, setSearchKey] = useState("");
   const dispatch = useDispatch();
 
   const fetchData = async () => {
@@ -30,8 +31,11 @@ function App() {
     //dispatch(loadNotes(convertDate));
   };
 
+  const updateSearchKey = (value) => {
+    setSearchKey(value);
+  };
+
   useEffect(() => {
-    // fetch data and display latest note
     fetchData();
   });
 
@@ -42,10 +46,18 @@ function App() {
       </div>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <List fetchData={fetchData} />
+          <List
+            fetchData={fetchData}
+            searchKey={searchKey}
+            updateSearchKey={updateSearchKey}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Body fetchData={fetchData} />
+          <Body
+            fetchData={fetchData}
+            searchKey={searchKey}
+            updateSearchKey={updateSearchKey}
+          />
         </Grid>
       </Grid>
     </div>

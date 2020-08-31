@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useStore } from "react-redux";
+import { useStore, useDispatch } from "react-redux";
 import axios from "axios";
 import classNames from "classnames";
 import "../style/App.css";
 import { IconButton, Tooltip } from "@material-ui/core";
-import { Delete, Save } from "@material-ui/icons";
+import { Delete } from "@material-ui/icons";
 
-function Body({ fetchData }) {
+function Body(props) {
   const [notebody, setNotebody] = useState("");
   const [id, setId] = useState();
   const [timer, setTimer] = useState(0);
@@ -18,14 +18,10 @@ function Body({ fetchData }) {
     setId(store.getState().id);
   });
 
-  const updateNote = async (id, text) => {
-    await axios.patch(`/notes/${id}`, { body: text });
-    await fetchData();
-  };
-
   const deleteNote = async (id) => {
     await axios.delete(`notes/${id}`);
-    await fetchData();
+    props.updateSearchKey("");
+    await props.fetchData();
   };
 
   const saveBody = (text) => {
@@ -35,7 +31,7 @@ function Body({ fetchData }) {
     setTimer(
       setTimeout(async () => {
         await axios.patch(`/notes/${id}`, { body: text });
-        await fetchData();
+        await props.fetchData();
         await setStatus("Saved");
       }, 1000)
     );
