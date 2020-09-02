@@ -11,6 +11,7 @@ function Body(props) {
   const [id, setId] = useState();
   const [timer, setTimer] = useState(0);
   const [status, setStatus] = useState("");
+
   const store = useStore();
 
   store.subscribe(() => {
@@ -41,7 +42,11 @@ function Body(props) {
     <div className="display-box">
       <div className={classNames("box-header", "body-area")}>
         <Tooltip title="Delete" placement="top">
-          <IconButton aria-label="delete" onClick={() => deleteNote(id)}>
+          <IconButton
+            id="delete-button"
+            aria-label="delete"
+            onClick={() => deleteNote(id)}
+          >
             <Delete />
           </IconButton>
         </Tooltip>

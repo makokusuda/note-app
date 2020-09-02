@@ -23,10 +23,10 @@ function Card(props) {
   }
 
   return (
-    <div>
+    <div className="note-card">
       <button
         type="button"
-        className={chosenID === props.id ? "active-card" : "card"}
+        className={chosenID === props.id ? "active-card-button" : "card-button"}
         onClick={() => {
           getText(props.body, props.id);
         }}

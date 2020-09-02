@@ -76,7 +76,11 @@ function List(props) {
         </div>
         <div id="right-material">
           <Tooltip title="Create" placement="top">
-            <IconButton aria-label="create" onClick={() => addNote()}>
+            <IconButton
+              id="create-button"
+              aria-label="create"
+              onClick={() => addNote()}
+            >
               <Create />
             </IconButton>
           </Tooltip>

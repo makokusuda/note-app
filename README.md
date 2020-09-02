@@ -31,6 +31,7 @@ CREATE DATABASE note;
 Create data table
 
 ```
+yarn knex migrate:up 20200829162649_add_function_updated_at.js --knexfile models/knexfile.js
 yarn migrate
 ```
 
@@ -57,6 +58,12 @@ yarn start:client
 Visit `http://localhost:3000/`
 
 ## Running the tests
+
+Run tests for server
+
+```
+yarn test:server
+```
 
 ## Deployment
 

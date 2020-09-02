@@ -33,10 +33,11 @@ app.post("/notes", async (req, res) => {
   }
 
   try {
-    const id = await database("notes").insert({
+    const addedNote = {
       body: note.body,
-    });
-    res.status(201).json({ id });
+    };
+    await database("notes").insert(addedNote);
+    res.status(201).json({ message: "Note successfully added", addedNote });
   } catch (error) {
     res.status(500).json({ error });
   }
@@ -62,10 +63,10 @@ app.delete("/notes/:id", async (req, res) => {
     res.status(404).json({ error });
   }
 });
-// app.delete("/notes/:od", async (req, res) => {
-
-// })
 
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);
 });
+
+// Necessary to run mocha test
+module.exports = app;
