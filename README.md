@@ -1,6 +1,6 @@
 # Kiroku📝
 
-You can see how it works: [https://cc-note-app.herokuapp.com/](https://cc-note-app.herokuapp.com/)
+You can see how it works: [https://kiroku-notes.herokuapp.com/](https://kiroku-notes.herokuapp.com/)
 
 ## Getting Started
 
